@@ -1,3 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Popping:wght@300;400;500;600;700;800&display=swap");
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+
 .nav__logo {
   width: 3rem;
   display: block;
