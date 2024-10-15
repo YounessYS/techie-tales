@@ -50,3 +50,33 @@ export const MOCK_AUTHORS = [
   { id: 4, avatar: Avatar4, name: "Sophia Blue", posts: 2 },
   { id: 5, avatar: Avatar5, name: "Daniel Hill", posts: 1 },
 ];
+
+export const POST_CATEGORIES = [
+  "Agriculture",
+  "Business",
+  "Education",
+  "Entertainment",
+  "Art",
+  "Investment",
+  "Uncategorised",
+  "Weather",
+];
+
+// prettier-ignore
+export const modules = {
+    toolbar: [
+      [{ "header": [1, 2, 3, 4, 5, 6, false] }],
+      ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+      [{ 'list': ['ordered', 'bullet'] }, { 'indent': '-1' }, { 'indent': '+1' }],
+      ['link', 'image'],
+      ['clean']
+    ],
+  }
+
+// prettier-ignore
+export const formats = [
+    'header',
+    'bold', 'italic', 'underline', 'strike', 'blockquote',
+    'list', 'bullet', 'indent',
+    'link', 'image'
+  ]
