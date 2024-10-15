@@ -25,6 +25,7 @@ const Login = () => {
             name="email"
             value={userData.email}
             onChange={handleInputChange}
+            autoFocus
           />
           <input
             type="password"
