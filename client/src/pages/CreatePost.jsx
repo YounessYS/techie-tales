@@ -5,7 +5,7 @@ import "react-quill/dist/quill.snow.css";
 
 const CreatePost = () => {
   const [title, setTitle] = useState("");
-  const [category, setCategory] = useState("Uncategorised");
+  const [category, setCategory] = useState("Uncategorized");
   const [description, setDescription] = useState("");
   const [thumbnail, setThumbnail] = useState("");
 

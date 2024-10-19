@@ -28,9 +28,9 @@ export const MOCK_POSTS = [
   {
     id: "3",
     thumbnail: Thumbnail3,
-    category: "weather",
-    title: "How the British rainy weather may actually be good for you",
-    desc: "The rainy British weather might seem dreary, but it has unexpected benefits. Rain naturally cleanses the air, reducing pollution and improving overall air quality, which can benefit respiratory health. Moisture in the air also keeps skin hydrated, preventing dryness and promoting healthier skin. Cooler, rainy days can lead to better sleep, as the body tends to rest more comfortably in cooler environments.",
+    category: "Robotics",
+    title: "How the British rainy Robotics may actually be good for you",
+    desc: "The rainy British Robotics might seem dreary, but it has unexpected benefits. Rain naturally cleanses the air, reducing pollution and improving overall air quality, which can benefit respiratory health. Moisture in the air also keeps skin hydrated, preventing dryness and promoting healthier skin. Cooler, rainy days can lead to better sleep, as the body tends to rest more comfortably in cooler environments.",
     authorID: 13,
   },
   {
@@ -52,14 +52,14 @@ export const MOCK_AUTHORS = [
 ];
 
 export const POST_CATEGORIES = [
-  "Agriculture",
+  "Tech",
   "Business",
   "Education",
   "Entertainment",
-  "Art",
+  "AI",
   "Investment",
-  "Uncategorised",
-  "Weather",
+  "Uncategorized",
+  "Robotics",
 ];
 
 // prettier-ignore
