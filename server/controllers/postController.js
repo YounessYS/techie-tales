@@ -14,14 +14,14 @@ const createPost = async (req, res, next) => {
     }
 
     const validCategories = [
-      "Agriculture",
+      "Tech",
       "Business",
       "Education",
       "Entertainment",
-      "Art",
+      "AI",
       "Investment",
-      "Uncategorised",
-      "Weather",
+      "Uncategorized",
+      "Robotics",
     ];
 
     if (!validCategories.includes(category)) {

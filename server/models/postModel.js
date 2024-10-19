@@ -7,14 +7,14 @@ const postSchema = new Schema(
       type: String,
       enum: {
         values: [
-          "Agriculture",
+          "Tech",
           "Business",
           "Education",
           "Entertainment",
-          "Art",
+          "AI",
           "Investment",
-          "Uncategorised",
-          "Weather",
+          "Uncategorized",
+          "Robotics",
         ],
         message: "{VALUE} is not a supported category",
       },
