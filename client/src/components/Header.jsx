@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Logo from "../images/logo.png";
 import { FaBars } from "react-icons/fa";
 import { AiOutlineClose } from "react-icons/ai";
 
@@ -33,7 +32,7 @@ const Header = () => {
     <nav>
       <div className="container nav__container">
         <Link to={"/"} className="nav__logo" onClick={closeNavHandler}>
-          <img src={Logo} alt="Navbar Logo" />
+          <h1>TECHIE TALES</h1>
         </Link>
         {isNavShowing && (
           <ul className="nav__menu">
