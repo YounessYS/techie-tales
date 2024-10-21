@@ -40,7 +40,7 @@ const Header = () => {
         {currentUser?.id && isNavShowing && (
           <ul className="nav__menu">
             <li>
-              <Link to="/profile/fdsfd" onClick={closeNavHandler}>
+              <Link to={`/profile/${currentUser.id}`} onClick={closeNavHandler}>
                 {currentUser?.name}
               </Link>
             </li>
