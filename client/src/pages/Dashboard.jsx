@@ -1,10 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
-import { MOCK_POSTS } from "../utils/data.js";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { UserContext } from "../context/userContext.js";
+import axios from "axios";
+import Loading from "../components/Loading.jsx";
+import DeletePost from "./DeletePost.jsx";
 
 const Dashboard = () => {
-  const [posts, setPosts] = useState(MOCK_POSTS);
+  const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const { id } = useParams();
 
   const navigate = useNavigate();
 
@@ -17,6 +21,31 @@ const Dashboard = () => {
     }
   }, [navigate, token]);
 
+  useEffect(() => {
+    const fetchPosts = async () => {
+      setLoading(true);
+      try {
+        const response = await axios.get(
+          `${process.env.REACT_APP_BASE_URL}/posts/users/${id}`,
+          {
+            withCredentials: true,
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
+        setPosts(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+      setLoading(false);
+    };
+
+    fetchPosts();
+  }, [id]);
+
+  if (loading) {
+    return <Loading />;
+  }
+
   return (
     <section className="dashboard">
       {posts.length ? (
@@ -26,26 +55,24 @@ const Dashboard = () => {
               <article key={post.id} className="dashboard__post">
                 <div className="dashboard__post-info">
                   <div className="dashboard__post-thumbnail">
-                    <img src={post.thumbnail} alt="" />
+                    <img
+                      src={`${process.env.REACT_APP_ASSETS_URL}/uploads/${post.thumbnail}`}
+                      alt=""
+                    />
                   </div>
                   <h5>{post.title}</h5>
                 </div>
                 <div className="dashboard__post-actions">
-                  <Link to={`/posts/${post.id}`} className="btn sm">
+                  <Link to={`/posts/${post._id}`} className="btn sm">
                     View
                   </Link>
                   <Link
-                    to={`/posts/${post.id}/edit`}
+                    to={`/posts/${post._id}/edit`}
                     className="btn sm primary"
                   >
                     Edit
                   </Link>
-                  <Link
-                    to={`/posts/${post.id}/delete`}
-                    className="btn sm danger"
-                  >
-                    Delete
-                  </Link>
+                  <DeletePost postID={post._id} />
                 </div>
               </article>
             );

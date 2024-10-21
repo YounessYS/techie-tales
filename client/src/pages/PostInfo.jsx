@@ -44,10 +44,13 @@ const PostInfo = () => {
             <PostAuthor authorID={post.creator} createdAt={post.createdAt} />
             {currentUser?.id == post?.creator && (
               <div className="post-info__buttons">
-                <Link to={`posts/${post?._id}/edit`} className="btn sm primary">
+                <Link
+                  to={`/posts/${post?._id}/edit`}
+                  className="btn sm primary"
+                >
                   Edit
                 </Link>
-                <DeletePost postId={id} />
+                <DeletePost postID={id} />
               </div>
             )}
           </div>

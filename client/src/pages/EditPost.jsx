@@ -2,15 +2,19 @@ import React, { useContext, useEffect, useState } from "react";
 import { POST_CATEGORIES, modules, formats } from "../utils/data";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { UserContext } from "../context/userContext";
+import axios from "axios";
 
 const EditPost = () => {
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("Uncategorized");
   const [description, setDescription] = useState("");
   const [thumbnail, setThumbnail] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
+
+  const { id } = useParams();
 
   const { currentUser } = useContext(UserContext);
   const token = currentUser?.token;
@@ -21,12 +25,54 @@ const EditPost = () => {
     }
   }, [navigate, token]);
 
+  useEffect(() => {
+    const getPost = async () => {
+      try {
+        const response = await axios.get(
+          `${process.env.REACT_APP_BASE_URL}/posts/${id}`
+        );
+        setTitle(response.data.title);
+        setDescription(response.data.description);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    getPost();
+  }, [id]);
+
+  const editPost = async (e) => {
+    e.preventDefault();
+
+    const postData = new FormData();
+    postData.set("title", title);
+    postData.set("category", category);
+    postData.set("description", description);
+    postData.set("thumbnail", thumbnail);
+
+    try {
+      const response = await axios.patch(
+        `${process.env.REACT_APP_BASE_URL}/posts/${id}`,
+        postData,
+        {
+          withCredentials: true,
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      if (response.status == 200) {
+        return navigate("/");
+      }
+    } catch (err) {
+      setError(err.response.data.message);
+    }
+  };
+
   return (
     <section className="create-post">
       <div className="container">
         <h2>Edit Post</h2>
-        <p className="form__error-message">This is an error message.</p>
-        <form className="form create-post__form">
+        {error && <p className="form__error-message">{error}</p>}
+        <form className="form create-post__form" onSubmit={editPost}>
           <input
             type="text"
             placeholder="Title"
