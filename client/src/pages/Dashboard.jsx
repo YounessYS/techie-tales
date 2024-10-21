@@ -1,9 +1,21 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { MOCK_POSTS } from "../utils/data.js";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { UserContext } from "../context/userContext.js";
 
 const Dashboard = () => {
   const [posts, setPosts] = useState(MOCK_POSTS);
+
+  const navigate = useNavigate();
+
+  const { currentUser } = useContext(UserContext);
+  const token = currentUser?.token;
+
+  useEffect(() => {
+    if (!token) {
+      navigate("/login");
+    }
+  }, [navigate, token]);
 
   return (
     <section className="dashboard">
